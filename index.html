@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NiCE Healthcare — Care that feels good</title>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --plum:        #3d1f6e;
+      --plum-light:  #6b4fa0;
+      --nice-blue:   #3694fc;
+      --nice-blue-d: #1a78e8;
+      --mint:        #a8eddc;
+      --mint-dark:   #36ead0;
+      --lavender:    #e8e4f8;
+      --sky:         #ddf0fb;
+      --coral:       #ff8fab;
+      --coral-pale:  #ffeef4;
+      --peach:       #ffe8d6;
+      --white:       #ffffff;
+      --ink:         #1a1033;
+      --muted:       #6b5f88;
+      --card-bg:     rgba(255,255,255,0.72);
+      --sans:        'Be Vietnam Pro', Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); color: var(--ink); overflow-x: hidden; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 0 48px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(61,31,110,0.08);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo-nice { height: 26px; width: auto; }
+
+    .nav-divider {
+      width: 1.5px; height: 24px;
+      background: rgba(61,31,110,0.2);
+    }
+
+    .nav-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--plum-light);
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500;
+      color: var(--muted); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--plum); }
+
+    .nav-cta {
+      background: var(--nice-blue);
+      color: var(--white) !important;
+      padding: 10px 24px;
+      border-radius: 9999px;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      transition: background .2s, transform .15s !important;
+      box-shadow: 0 4px 18px rgba(54,148,252,0.35);
+    }
+    .nav-cta:hover { background: var(--nice-blue-d) !important; transform: translateY(-1px); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+      padding: 120px 48px 80px;
+    }
+
+    /* Animated gradient background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #f0ebff 0%, #ddf0fb 40%, #e8f8f2 70%, #ffeef4 100%);
+      z-index: 0;
+    }
+
+    /* Animated blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.55;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+
+    .blob-1 {
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, #c4b5f4 0%, #a8eddc 100%);
+      top: -140px; left: -100px;
+      animation-duration: 16s;
+    }
+    .blob-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #a7d0fe 0%, #ff8fab 100%);
+      top: 60px; right: -80px;
+      animation-duration: 12s;
+      animation-delay: -4s;
+    }
+    .blob-3 {
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, #acf7f3 0%, #e8e4f8 100%);
+      bottom: -80px; left: 30%;
+      animation-duration: 18s;
+      animation-delay: -8s;
+    }
+    .blob-4 {
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, #ffe8d6 0%, #a8eddc 100%);
+      bottom: 80px; right: 15%;
+      animation-duration: 20s;
+      animation-delay: -2s;
+    }
+
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(30px, -20px) scale(1.05); }
+      66%  { transform: translate(-20px, 30px) scale(0.97); }
+      100% { transform: translate(15px, -10px) scale(1.03); }
+    }
+
+    /* Floating rings */
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1.5px solid rgba(54,148,252,0.18);
+      animation: pulse-ring 6s ease-out infinite;
+    }
+    .ring-1 { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 0s; }
+    .ring-2 { width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 2s; }
+    .ring-3 { width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 4s; }
+
+    @keyframes pulse-ring {
+      0%   { opacity: 0.5; transform: translate(-50%,-50%) scale(0.9); }
+      100% { opacity: 0;   transform: translate(-50%,-50%) scale(1.3); }
+    }
+
+    /* Hero content */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 740px;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(54,148,252,0.2);
+      border-radius: 9999px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--nice-blue);
+      margin-bottom: 28px;
+    }
+    .hero-pill-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--nice-blue);
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+    .hero-headline {
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--plum);
+      margin-bottom: 24px;
+    }
+
+    .hero-headline .highlight {
+      background: linear-gradient(135deg, var(--nice-blue) 0%, var(--mint-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-body {
+      font-size: 19px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .btn-primary {
+      background: var(--plum);
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 9999px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 8px 28px rgba(61,31,110,0.28);
+      transition: transform .15s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(61,31,110,0.36); }
+
+    .btn-ghost {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      color: var(--plum);
+      padding: 15px 32px;
+      border-radius: 9999px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid rgba(61,31,110,0.18);
+      transition: background .2s, transform .15s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.92); transform: translateY(-1px); }
+
+    /* Floating hero stats */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat-pill {
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 9999px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(61,31,110,0.08);
+    }
+    .stat-pill-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .stat-pill-val { font-size: 18px; font-weight: 700; color: var(--plum); }
+    .stat-pill-lbl { font-size: 12px; font-weight: 400; color: var(--muted); }
+
+    /* Floating chat card */
+    .hero-chat {
+      position: absolute;
+      bottom: 40px;
+      right: 48px;
+      width: 320px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.95);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 16px 48px rgba(61,31,110,0.14), 0 4px 16px rgba(61,31,110,0.06);
+      z-index: 20;
+      animation: float-card 6s ease-in-out infinite;
+    }
+
+    @keyframes float-card {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+
+    .chat-header {
+      display: flex; align-items: center; gap: 10px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(61,31,110,0.08);
+      margin-bottom: 14px;
+    }
+    .chat-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--nice-blue), var(--mint-dark));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .chat-name { font-size: 13px; font-weight: 600; color: var(--plum); }
+    .chat-online { font-size: 11px; color: #16a34a; font-weight: 500; }
+
+    .chat-bubble {
+      display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-end;
+    }
+    .chat-bubble.agent { flex-direction: row; }
+    .chat-bubble.user  { flex-direction: row-reverse; }
+
+    .bubble-dot-sm {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--nice-blue), var(--mint-dark));
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .bubble-msg {
+      font-size: 13px; font-weight: 400; line-height: 1.45;
+      padding: 9px 14px; border-radius: 16px; max-width: 82%;
+    }
+    .agent .bubble-msg { background: var(--lavender); color: var(--plum); border-bottom-left-radius: 4px; }
+    .user  .bubble-msg { background: var(--plum); color: white; border-bottom-right-radius: 4px; }
+
+    .chat-input-row {
+      display: flex; gap: 8px; align-items: center;
+      background: rgba(61,31,110,0.05);
+      border-radius: 9999px;
+      padding: 8px 10px;
+      margin-top: 6px;
+    }
+    .chat-input-row span { font-size: 12px; color: var(--muted); flex: 1; opacity: 0.7; }
+    .chat-send {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--nice-blue);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Wave divider */
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* ── SOCIAL PROOF STRIP ───────────────────────────────── */
+    .proof-strip {
+      background: var(--white);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(61,31,110,0.06);
+    }
+    .proof-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 500; color: var(--muted);
+    }
+    .proof-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+    }
+
+    /* ── SERVICES ─────────────────────────────────────────── */
+    .services-section {
+      background: var(--white);
+      padding: 96px 48px;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--nice-blue); margin-bottom: 14px;
+    }
+    .section-headline {
+      text-align: center;
+      font-size: 48px; font-weight: 700;
+      color: var(--plum); line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      text-align: center;
+      font-size: 17px; font-weight: 300;
+      color: var(--muted); max-width: 520px;
+      margin: 0 auto 64px;
+      line-height: 1.7;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1.5px solid rgba(61,31,110,0.08);
+      border-radius: 24px;
+      padding: 36px 32px;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(61,31,110,0.10);
+      border-color: rgba(61,31,110,0.16);
+    }
+
+    .service-card-icon {
+      width: 60px; height: 60px;
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      margin-bottom: 22px;
+    }
+
+    .service-card h3 {
+      font-size: 20px; font-weight: 600;
+      color: var(--plum); margin-bottom: 12px;
+    }
+    .service-card p {
+      font-size: 14px; font-weight: 300;
+      color: var(--muted); line-height: 1.75;
+      margin-bottom: 22px;
+    }
+    .service-card-link {
+      font-size: 13px; font-weight: 600;
+      color: var(--nice-blue); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: gap .2s;
+    }
+    .service-card-link:hover { gap: 10px; }
+
+    /* ── GRADIENT BREAK ───────────────────────────────────── */
+    .gradient-break {
+      background: linear-gradient(135deg, var(--plum) 0%, #6b4fa0 50%, #3694fc 100%);
+      padding: 96px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .gradient-break::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    }
+    .gradient-break-content { position: relative; z-index: 1; }
+    .gradient-break h2 {
+      font-size: 52px; font-weight: 700;
+      color: var(--white); line-height: 1.1;
+      letter-spacing: -0.02em; margin-bottom: 20px;
+    }
+    .gradient-break p {
+      font-size: 18px; font-weight: 300;
+      color: rgba(255,255,255,0.78);
+      max-width: 540px; margin: 0 auto 44px; line-height: 1.7;
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--plum);
+      padding: 16px 40px;
+      border-radius: 9999px;
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+      transition: transform .15s;
+    }
+    .btn-white:hover { transform: translateY(-2px); }
+
+    /* Floating stat cards on break */
+    .break-stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 60px;
+    }
+    .break-stat-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 28px 32px;
+      text-align: center;
+      min-width: 160px;
+    }
+    .break-stat-card .n {
+      font-size: 42px; font-weight: 700;
+      color: var(--white); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .break-stat-card .n span { font-size: 24px; }
+    .break-stat-card .d {
+      font-size: 13px; font-weight: 400;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ── HOW IT WORKS ─────────────────────────────────────── */
+    .how-section {
+      padding: 96px 48px;
+      background: linear-gradient(180deg, var(--lavender) 0%, var(--white) 100%);
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .how-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 32px 28px;
+      box-shadow: 0 4px 24px rgba(61,31,110,0.06);
+      position: relative;
+    }
+
+    .how-step-num {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--plum), var(--plum-light));
+      color: var(--white);
+      font-size: 20px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .how-card h4 {
+      font-size: 18px; font-weight: 600;
+      color: var(--plum); margin-bottom: 10px;
+    }
+    .how-card p {
+      font-size: 14px; font-weight: 300;
+      color: var(--muted); line-height: 1.7;
+    }
+
+    .how-connector {
+      position: absolute;
+      top: 40px; right: -14px;
+      width: 28px; height: 2px;
+      background: linear-gradient(90deg, var(--plum-light), var(--nice-blue));
+      opacity: 0.3;
+      z-index: 2;
+    }
+    .how-card:last-child .how-connector { display: none; }
+
+    /* ── TESTIMONIALS ─────────────────────────────────────── */
+    .testimonials-section {
+      background: var(--white);
+      padding: 96px 48px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background: linear-gradient(145deg, var(--lavender) 0%, rgba(221,240,251,0.6) 100%);
+      border-radius: 24px;
+      padding: 36px 32px;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+    .testimonial-card.featured {
+      background: linear-gradient(145deg, var(--plum) 0%, #6b4fa0 100%);
+      grid-row: span 1;
+    }
+
+    .t-stars { font-size: 14px; color: #f59e0b; margin-bottom: 16px; }
+    .t-stars.light { color: var(--mint); }
+
+    .testimonial-card blockquote {
+      font-size: 16px; font-weight: 400;
+      color: var(--plum); line-height: 1.65;
+      font-style: italic; margin-bottom: 24px;
+    }
+    .testimonial-card.featured blockquote {
+      font-size: 18px; color: rgba(255,255,255,0.92);
+    }
+
+    .t-author { display: flex; align-items: center; gap: 12px; }
+    .t-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--nice-blue), var(--mint-dark));
+      color: white; font-weight: 600; font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .t-name { font-size: 14px; font-weight: 600; color: var(--plum); }
+    .t-role { font-size: 12px; color: var(--muted); }
+    .featured .t-name { color: white; }
+    .featured .t-role { color: rgba(255,255,255,0.6); }
+
+    /* ── CTA ──────────────────────────────────────────────── */
+    .cta-section {
+      background: linear-gradient(145deg, #f0ebff 0%, #ddf0fb 50%, #e8f8f2 100%);
+      padding: 100px 48px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: 52px; font-weight: 700;
+      color: var(--plum); line-height: 1.1;
+      letter-spacing: -0.02em; margin-bottom: 18px;
+    }
+    .cta-section p {
+      font-size: 18px; font-weight: 300;
+      color: var(--muted); margin-bottom: 44px;
+      max-width: 480px; margin-left: auto; margin-right: auto;
+      line-height: 1.7;
+    }
+    .cta-btns { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer {
+      background: var(--plum);
+      color: rgba(255,255,255,0.65);
+      padding: 64px 48px 32px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+
+    .footer-brand-name {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    }
+
+    .footer-brand p { font-size: 14px; font-weight: 300; line-height: 1.7; max-width: 260px; }
+
+    .footer-col h4 {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--mint); margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 11px; }
+    .footer-col ul a {
+      font-size: 14px; font-weight: 300;
+      color: rgba(255,255,255,0.55); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-col ul a:hover { color: var(--mint); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 28px;
+      display: flex; justify-content: space-between;
+      font-size: 13px; font-weight: 300;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--mint); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-chat { display: none; }
+      .services-grid, .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .how-grid { grid-template-columns: 1fr 1fr; }
+      .how-connector { display: none; }
+    }
+    @media (max-width: 720px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 64px; }
+      .hero-headline { font-size: 44px; }
+      .services-grid, .testimonials-grid, .how-grid { grid-template-columns: 1fr; }
+      .services-section, .how-section, .testimonials-section, .cta-section { padding: 72px 24px; }
+      .gradient-break { padding: 72px 24px; }
+      .gradient-break h2, .cta-section h2, .section-headline { font-size: 36px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      footer { padding: 48px 24px 24px; }
+      .hero-stat-pill { flex-direction: column; text-align: center; gap: 4px; }
+      .break-stats { flex-direction: column; align-items: center; }
+      .proof-strip { gap: 24px; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">
+    <svg class="nav-logo-nice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 864.3 400.99" role="img" aria-label="NiCE">
+      <style>.nb2{fill:#3694fd;}</style>
+      <path class="nb2" d="M333.62,62.55c-18.86-1.19-34.4,14.35-33.21,33.21.98,15.55,13.6,28.17,29.15,29.15,18.86,1.19,34.4-14.35,33.21-33.21-.98-15.55-13.6-28.17-29.15-29.15Z"/>
+      <path d="M265.33,82.11h-50.27c-1.66,0-3,1.34-3,3v147.41c0,1.02-1.35,1.39-1.86.5L123.2,83.61c-.54-.92-1.52-1.49-2.59-1.49h-55.12c-1.66,0-3,1.34-3,3v244.74c0,1.66,1.34,3,3,3h50.27c1.66,0,3-1.34,3-3v-146.82c0-1.02,1.35-1.39,1.86-.5l87,148.84c.54.92,1.52,1.49,2.59,1.49h55.13c1.66,0,3-1.34,3-3V85.11c0-1.66-1.34-3-3-3Z"/>
+      <path d="M353.85,141.37c-7.03,1.51-14.5,2.33-22.27,2.33s-15.24-.82-22.27-2.33c-1.87-.4-3.62,1.02-3.62,2.93v185.55c0,1.66,1.34,3,3,3h45.78c1.66,0,3-1.34,3-3v-185.55c0-1.91-1.76-3.33-3.62-2.93Z"/>
+      <path d="M798.81,286.94h-104.66c-.55,0-1-.45-1-1v-54.5c0-.55.45-1,1-1h85.42c1.66,0,3-1.34,3-3v-39.91c0-1.66-1.34-3-3-3h-85.42c-.55,0-1-.45-1-1v-54.5c0-.55.45-1,1-1h104.66c1.66,0,3-1.34,3-3v-39.91c0-1.66-1.34-3-3-3h-158.92c-1.66,0-3,1.34-3,3v244.74c0,1.66,1.34,3,3,3h158.92c1.66,0,3-1.34,3-3v-39.91c0-1.66-1.34-3-3-3Z"/>
+      <path d="M601.92,239.96h-53.14c-1.44,0-2.69,1.02-2.95,2.43-2.46,13.53-7.09,24.33-13.89,32.37-7.65,9.07-18.49,13.6-32.5,13.6-10.78,0-20.05-3.29-27.81-9.89-7.76-6.59-13.74-15.89-17.95-27.9-4.2-12.01-6.31-26.25-6.31-42.73,0-16.01,1.99-30.13,5.98-42.38,3.99-12.24,9.91-21.77,17.79-28.6,7.87-6.83,17.41-10.24,28.62-10.24,12.72,0,23.07,4.24,31.04,12.71,6.99,7.43,11.82,17.39,14.51,29.87.29,1.37,1.52,2.34,2.92,2.34h52.94c1.88,0,3.29-1.71,2.95-3.56-5.27-28.79-16.07-51.06-32.42-66.79-17.14-16.48-41.12-24.72-71.95-24.72-22.42,0-41.93,5.42-58.53,16.24-16.6,10.83-29.38,26.08-38.32,45.73-8.95,19.66-13.42,42.79-13.42,69.39s4.69,51.03,14.07,70.45c9.38,19.42,22.31,34.32,38.81,44.67,16.49,10.36,35.3,15.54,56.43,15.54,20.48,0,38.05-3.88,52.71-11.65,14.66-7.77,26.52-19.01,35.57-33.73,8.49-13.79,14.42-30.34,17.79-49.63.32-1.85-1.08-3.54-2.95-3.54Z"/>
+    </svg>
+    <div class="nav-divider"></div>
+    <span class="nav-label">Healthcare</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Clinicians</a></li>
+    <li><a href="#">How it works</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#" class="nav-cta">Get care today</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="ring ring-1"></div>
+    <div class="ring ring-2"></div>
+    <div class="ring ring-3"></div>
+  </div>
+
+  <div class="hero-content">
+    <h1 class="hero-headline">
+      Redefining what<br>
+      <span class="highlight">healthcare feels like.</span>
+    </h1>
+
+    <p class="hero-body">
+      See a GP in minutes. Get specialist care the same day. Mental health support whenever you need it. NiCE Healthcare fits around your life — not the other way around.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Book an appointment</a>
+      <a href="#" class="btn-ghost">Explore services</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat-pill">
+        <div class="stat-pill-icon" style="background:var(--lavender);">🩺</div>
+        <div>
+          <div class="stat-pill-val">98%</div>
+          <div class="stat-pill-lbl">Patient satisfaction</div>
+        </div>
+      </div>
+      <div class="hero-stat-pill">
+        <div class="stat-pill-icon" style="background:#e8f8f2;">⚡</div>
+        <div>
+          <div class="stat-pill-val">&lt; 4 min</div>
+          <div class="stat-pill-lbl">Average wait time</div>
+        </div>
+      </div>
+      <div class="hero-stat-pill">
+        <div class="stat-pill-icon" style="background:var(--coral-pale);">⭐</div>
+        <div>
+          <div class="stat-pill-val">4.9 ★</div>
+          <div class="stat-pill-lbl">App store rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Wave down -->
+<div class="wave-divider" style="background:white; margin-top:-2px;">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px;">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,0 L0,0 Z" fill="#f0ebff" opacity="0.5"/>
+    <path d="M0,40 C360,10 720,60 1080,30 C1260,15 1380,40 1440,45 L1440,0 L0,0 Z" fill="white"/>
+  </svg>
+</div>
+
+<!-- ── PROOF STRIP ── -->
+<div class="proof-strip">
+  <div class="proof-item">
+    <div class="proof-icon" style="background:var(--lavender);">🏥</div>
+    CQC regulated
+  </div>
+  <div class="proof-item">
+    <div class="proof-icon" style="background:#e8f8f2;">🇬🇧</div>
+    UK-wide coverage
+  </div>
+  <div class="proof-item">
+    <div class="proof-icon" style="background:var(--coral-pale);">🔒</div>
+    NHS-grade data security
+  </div>
+  <div class="proof-item">
+    <div class="proof-icon" style="background:var(--peach);">👩‍⚕️</div>
+    1,800+ registered clinicians
+  </div>
+  <div class="proof-item">
+    <div class="proof-icon" style="background:var(--sky);">💬</div>
+    24/7 health support
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<div class="services-section">
+  <div class="section-label">What we offer</div>
+  <h2 class="section-headline">Everything your health needs</h2>
+  <p class="section-sub">One platform, every kind of care. From a quick GP chat to ongoing specialist support — it's all here.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-card-icon" style="background:var(--lavender);">🩺</div>
+      <h3>GP consultations</h3>
+      <p>See a registered UK GP by video, phone or in-person today. Prescriptions, referrals and sick notes handled digitally within minutes.</p>
+      <a href="#" class="service-card-link">Book a GP →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-card-icon" style="background:#eef4ff;">🧠</div>
+      <h3>Mental health</h3>
+      <p>Accredited therapists and psychiatrists from the same day. Ongoing care plans and between-session messaging — all in one place.</p>
+      <a href="#" class="service-card-link">Explore →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-card-icon" style="background:#e8f8f2;">🔬</div>
+      <h3>Tests &amp; imaging</h3>
+      <p>Blood tests, MRI, X-ray and screenings at accredited labs near you. Results explained in plain English within 24 hours.</p>
+      <a href="#" class="service-card-link">Find a lab →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-card-icon" style="background:var(--coral-pale);">💊</div>
+      <h3>Prescriptions</h3>
+      <p>Request, renew and track prescriptions online. Free next-day delivery or collect from 3,000+ partner pharmacies nationwide.</p>
+      <a href="#" class="service-card-link">Manage →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-card-icon" style="background:var(--peach);">🏥</div>
+      <h3>Specialist referrals</h3>
+      <p>Cardiology, dermatology, orthopaedics and more — fast-tracked without the paperwork. Usually within 48 hours.</p>
+      <a href="#" class="service-card-link">Find a specialist →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-card-icon" style="background:var(--sky);">💬</div>
+      <h3>24/7 assistant</h3>
+      <p>Symptom checking and triage around the clock, escalating to an on-call nurse whenever a human judgement matters.</p>
+      <a href="#" class="service-card-link">Try it now →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── GRADIENT BREAK ── -->
+<div class="gradient-break">
+  <div class="gradient-break-content">
+    <h2>Healthcare that just works</h2>
+    <p>No forms. No hold music. No waiting three weeks for a slot. Just you and the right clinician, right now.</p>
+    <a href="#" class="btn-white">Create your free account</a>
+    <div class="break-stats">
+      <div class="break-stat-card">
+        <div class="n">250<span>k+</span></div>
+        <div class="d">Patients served</div>
+      </div>
+      <div class="break-stat-card">
+        <div class="n">&lt;4<span>min</span></div>
+        <div class="d">Average wait time</div>
+      </div>
+      <div class="break-stat-card">
+        <div class="n">98<span>%</span></div>
+        <div class="d">Patient satisfaction</div>
+      </div>
+      <div class="break-stat-card">
+        <div class="n">48<span>hr</span></div>
+        <div class="d">Max referral turnaround</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── HOW IT WORKS ── -->
+<div class="how-section">
+  <div class="section-label">Getting started</div>
+  <h2 class="section-headline">Four steps to better care</h2>
+  <p class="section-sub">We've taken out everything that makes healthcare frustrating. What's left is simple.</p>
+
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-connector"></div>
+      <div class="how-step-num">1</div>
+      <h4>Create your account</h4>
+      <p>Two minutes, no paperwork. Your health record is set up automatically and stays with you for life.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-connector"></div>
+      <div class="how-step-num">2</div>
+      <h4>Choose your service</h4>
+      <p>GP, mental health, specialist, pharmacy — everything your family needs in one dashboard.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-connector"></div>
+      <div class="how-step-num">3</div>
+      <h4>See a clinician</h4>
+      <p>Pick a time that works — same day, evenings, weekends. Video, phone or in-person.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-step-num">4</div>
+      <h4>Your record grows with you</h4>
+      <p>Every note, result, prescription and referral stored securely — always in plain language.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── TESTIMONIALS ── -->
+<div class="testimonials-section">
+  <div class="section-label">Patient stories</div>
+  <h2 class="section-headline">Real people, real results</h2>
+  <p class="section-sub">Over 250,000 patients have made NiCE Healthcare their first call.</p>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card featured">
+      <div class="t-stars light">★ ★ ★ ★ ★</div>
+      <blockquote>"I saw a GP on my lunch break, had a prescription at my pharmacy by 3pm. I'd been putting it off for months because I couldn't face the usual process. NiCE Healthcare changed that."</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">SJ</div>
+        <div>
+          <div class="t-name">Sarah J.</div>
+          <div class="t-role">Teacher, Manchester</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★ ★ ★ ★ ★</div>
+      <blockquote>"Having a therapist I can message between sessions has genuinely changed my relationship with my own mental health. It feels continuous, not episodic."</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">MO</div>
+        <div>
+          <div class="t-name">Marcus O.</div>
+          <div class="t-role">Software engineer, London</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★ ★ ★ ★ ★</div>
+      <blockquote>"Blood test results in my app the next morning with a plain-English explanation. No chasing, no hold music. The clinician had already left me a note. Brilliant."</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">PK</div>
+        <div>
+          <div class="t-name">Priya K.</div>
+          <div class="t-role">Accountant, Birmingham</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CTA ── -->
+<div class="cta-section">
+  <h2>Start feeling better today</h2>
+  <p>Join 250,000+ people who put their health first. Free to join, takes under two minutes.</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-primary">Create your free account</a>
+    <a href="#" class="btn-ghost">Talk to us first</a>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-brand-name">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 864.3 400.99" role="img" aria-label="NiCE" style="height:24px;width:auto;">
+          <style>.nb3{fill:#3694fd;}.nw3{fill:#fff;}</style>
+          <path class="nb3" d="M333.62,62.55c-18.86-1.19-34.4,14.35-33.21,33.21.98,15.55,13.6,28.17,29.15,29.15,18.86,1.19,34.4-14.35,33.21-33.21-.98-15.55-13.6-28.17-29.15-29.15Z"/>
+          <path class="nw3" d="M265.33,82.11h-50.27c-1.66,0-3,1.34-3,3v147.41c0,1.02-1.35,1.39-1.86.5L123.2,83.61c-.54-.92-1.52-1.49-2.59-1.49h-55.12c-1.66,0-3,1.34-3,3v244.74c0,1.66,1.34,3,3,3h50.27c1.66,0,3-1.34,3-3v-146.82c0-1.02,1.35-1.39,1.86-.5l87,148.84c.54.92,1.52,1.49,2.59,1.49h55.13c1.66,0,3-1.34,3-3V85.11c0-1.66-1.34-3-3-3Z"/>
+          <path class="nw3" d="M353.85,141.37c-7.03,1.51-14.5,2.33-22.27,2.33s-15.24-.82-22.27-2.33c-1.87-.4-3.62,1.02-3.62,2.93v185.55c0,1.66,1.34,3,3,3h45.78c1.66,0,3-1.34,3-3v-185.55c0-1.91-1.76-3.33-3.62-2.93Z"/>
+          <path class="nw3" d="M798.81,286.94h-104.66c-.55,0-1-.45-1-1v-54.5c0-.55.45-1,1-1h85.42c1.66,0,3-1.34,3-3v-39.91c0-1.66-1.34-3-3-3h-85.42c-.55,0-1-.45-1-1v-54.5c0-.55.45-1,1-1h104.66c1.66,0,3-1.34,3-3v-39.91c0-1.66-1.34-3-3-3h-158.92c-1.66,0-3,1.34-3,3v244.74c0,1.66,1.34,3,3,3h158.92c1.66,0,3-1.34,3-3v-39.91c0-1.66-1.34-3-3-3Z"/>
+          <path class="nw3" d="M601.92,239.96h-53.14c-1.44,0-2.69,1.02-2.95,2.43-2.46,13.53-7.09,24.33-13.89,32.37-7.65,9.07-18.49,13.6-32.5,13.6-10.78,0-20.05-3.29-27.81-9.89-7.76-6.59-13.74-15.89-17.95-27.9-4.2-12.01-6.31-26.25-6.31-42.73,0-16.01,1.99-30.13,5.98-42.38,3.99-12.24,9.91-21.77,17.79-28.6,7.87-6.83,17.41-10.24,28.62-10.24,12.72,0,23.07,4.24,31.04,12.71,6.99,7.43,11.82,17.39,14.51,29.87.29,1.37,1.52,2.34,2.92,2.34h52.94c1.88,0,3.29-1.71,2.95-3.56-5.27-28.79-16.07-51.06-32.42-66.79-17.14-16.48-41.12-24.72-71.95-24.72-22.42,0-41.93,5.42-58.53,16.24-16.6,10.83-29.38,26.08-38.32,45.73-8.95,19.66-13.42,42.79-13.42,69.39s4.69,51.03,14.07,70.45c9.38,19.42,22.31,34.32,38.81,44.67,16.49,10.36,35.3,15.54,56.43,15.54,20.48,0,38.05-3.88,52.71-11.65,14.66-7.77,26.52-19.01,35.57-33.73,8.49-13.79,14.42-30.34,17.79-49.63.32-1.85-1.08-3.54-2.95-3.54Z"/>
+        </svg>
+        <span style="font-size:14px;font-weight:500;color:var(--mint);">Healthcare</span>
+      </div>
+      <p>Modern, accessible healthcare for everyone across the UK. Registered in England &amp; Wales. Regulated by the CQC.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">GP consultations</a></li>
+        <li><a href="#">Mental health</a></li>
+        <li><a href="#">Diagnostics</a></li>
+        <li><a href="#">Pharmacy</a></li>
+        <li><a href="#">Specialists</a></li>
+        <li><a href="#">24/7 assistant</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Clinical partners</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help centre</a></li>
+        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">Terms of use</a></li>
+        <li><a href="#">Cookie settings</a></li>
+        <li><a href="#">Contact us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 NiCE Healthcare Ltd. All rights reserved.</span>
+    <span><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; <a href="#">Cookies</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
