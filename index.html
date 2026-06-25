@@ -1030,5 +1030,15 @@
   </div>
 </footer>
 
+<!-- Click-to-call (WebRTC) widget -->
+<script src="https://github.com/Cognigy/click-to-call-widget/releases/latest/download/webRTCWidget.js"></script>
+<script>
+  addEventListener("load", (event) => {
+    if (window.initWebRTCWidget) {
+      window.initWebRTCWidget("https://endpoint-trial.cognigy.ai/d3f4d8c5235fffc241cf5260ab0ebf62f21b33bf76a7584d60b6be753f61581f");
+    }
+  });
+</script>
+
 </body>
 </html>
