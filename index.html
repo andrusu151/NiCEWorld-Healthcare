@@ -98,7 +98,6 @@
       padding: 120px 8% 80px;
     }
 
-    /* Animated gradient background */
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -106,7 +105,6 @@
       z-index: 0;
     }
 
-    /* Animated blobs */
     .blob {
       position: absolute;
       border-radius: 50%;
@@ -150,7 +148,6 @@
       100% { transform: translate(15px, -10px) scale(1.03); }
     }
 
-    /* Floating rings */
     .ring {
       position: absolute;
       border-radius: 50%;
@@ -166,7 +163,6 @@
       100% { opacity: 0;   transform: translateY(-50%) scale(1.3); }
     }
 
-    /* Hero content */
     .hero-content {
       position: relative;
       z-index: 10;
@@ -284,76 +280,6 @@
     }
     .stat-pill-val { font-size: 18px; font-weight: 700; color: var(--plum); }
     .stat-pill-lbl { font-size: 12px; font-weight: 400; color: var(--muted); }
-
-    /* Floating chat card */
-    .hero-chat {
-      position: absolute;
-      bottom: 40px;
-      right: 48px;
-      width: 320px;
-      background: rgba(255,255,255,0.88);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.95);
-      border-radius: 24px;
-      padding: 20px;
-      box-shadow: 0 16px 48px rgba(61,31,110,0.14), 0 4px 16px rgba(61,31,110,0.06);
-      z-index: 20;
-      animation: float-card 6s ease-in-out infinite;
-    }
-
-    @keyframes float-card {
-      0%,100% { transform: translateY(0); }
-      50%      { transform: translateY(-8px); }
-    }
-
-    .chat-header {
-      display: flex; align-items: center; gap: 10px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(61,31,110,0.08);
-      margin-bottom: 14px;
-    }
-    .chat-avatar {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--nice-blue), var(--mint-dark));
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .chat-name { font-size: 13px; font-weight: 600; color: var(--plum); }
-    .chat-online { font-size: 11px; color: #16a34a; font-weight: 500; }
-
-    .chat-bubble {
-      display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-end;
-    }
-    .chat-bubble.agent { flex-direction: row; }
-    .chat-bubble.user  { flex-direction: row-reverse; }
-
-    .bubble-dot-sm {
-      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
-      background: linear-gradient(135deg, var(--nice-blue), var(--mint-dark));
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .bubble-msg {
-      font-size: 13px; font-weight: 400; line-height: 1.45;
-      padding: 9px 14px; border-radius: 16px; max-width: 82%;
-    }
-    .agent .bubble-msg { background: var(--lavender); color: var(--plum); border-bottom-left-radius: 4px; }
-    .user  .bubble-msg { background: var(--plum); color: white; border-bottom-right-radius: 4px; }
-
-    .chat-input-row {
-      display: flex; gap: 8px; align-items: center;
-      background: rgba(61,31,110,0.05);
-      border-radius: 9999px;
-      padding: 8px 10px;
-      margin-top: 6px;
-    }
-    .chat-input-row span { font-size: 12px; color: var(--muted); flex: 1; opacity: 0.7; }
-    .chat-send {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: var(--nice-blue);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
 
     /* Wave divider */
     .wave-divider svg { display: block; width: 100%; }
@@ -489,7 +415,6 @@
     }
     .btn-white:hover { transform: translateY(-2px); }
 
-    /* Floating stat cards on break */
     .break-stats {
       display: flex;
       justify-content: center;
@@ -683,7 +608,6 @@
 
     /* ── RESPONSIVE ───────────────────────────────────────── */
     @media (max-width: 1024px) {
-      .hero-chat { display: none; }
       .services-grid, .testimonials-grid { grid-template-columns: 1fr 1fr; }
       .how-grid { grid-template-columns: 1fr 1fr; }
       .how-connector { display: none; }
@@ -1034,7 +958,7 @@
 <script src="https://github.com/Cognigy/Webchat/releases/latest/download/webchat.js"></script>
 <script>
   initWebchat(
-    "https://endpoint-trial.cognigy.ai/1baca4498ed994169634921abde33b16dc3875c7d7f11d91902257d26e69d479"
+    "https://endpoint-trial.cognigy.ai/dbc9421e7943d833a0e4dde765db0dabd9fa29ebb8251b9ee2c588dc2487848e"
   );
 </script>
 
